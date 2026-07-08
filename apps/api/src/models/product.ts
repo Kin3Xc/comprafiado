@@ -1,4 +1,4 @@
-import { Schema, model, Types } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
 const variantSchema = new Schema(
   {
@@ -24,7 +24,7 @@ const productSchema = new Schema(
     descripcion: { type: String, required: true },
     /** Precio en COP, sin decimales. */
     precio: { type: Number, required: true, min: 1 },
-    categoria: { type: Types.ObjectId, ref: 'Category', required: true, index: true },
+    categoria: { type: Schema.Types.ObjectId, ref: 'Category', required: true, index: true },
     imagenes: { type: [imageSchema], default: [] },
     variantes: { type: [variantSchema], required: true },
     activo: { type: Boolean, default: true, index: true },
