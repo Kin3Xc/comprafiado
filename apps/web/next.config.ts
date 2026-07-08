@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.join(__dirname, '../..'),
   },
+  images: {
+    remotePatterns: [{ protocol: 'https', hostname: 'res.cloudinary.com' }],
+  },
   async rewrites() {
     // Proxy hacia la API Express: las cookies de auth viajan same-origin.
     return [

@@ -10,6 +10,9 @@ import { errorHandler } from './middleware/error-handler.js';
 import { healthRouter } from './routes/health.js';
 import { authRouter } from './routes/auth.js';
 import { usersRouter } from './routes/users.js';
+import { categoriesRouter } from './routes/categories.js';
+import { productsRouter } from './routes/products.js';
+import { uploadsRouter } from './routes/uploads.js';
 
 export function createApp() {
   const app = express();
@@ -36,6 +39,9 @@ export function createApp() {
   app.use('/api/health', healthRouter);
   app.use('/api/auth', authRouter);
   app.use('/api/users', usersRouter);
+  app.use('/api/categories', categoriesRouter);
+  app.use('/api/products', productsRouter);
+  app.use('/api/uploads', uploadsRouter);
 
   app.use(errorHandler);
 

@@ -128,11 +128,12 @@ Igual que B, pero el cliente define un abono inicial; al aprobarse el crédito p
 - [x] Páginas web: /login, /registro, /recuperar, /restablecer, /cuenta
 - Carrito de invitado movido a Fase 3 (requiere modelo de productos)
 
-### Fase 2 — Catálogo (1 semana)
-- [ ] CRUD de productos/categorías (admin), variantes talla/color, stock
-- [ ] Carga de imágenes a Cloudinary
-- [ ] PLP con filtros (categoría, talla, precio) y paginación — ISR
-- [ ] PDP con galería, selector de variantes — ISR + JSON-LD Product
+### Fase 2 — Catálogo (1 semana) ✅
+- [x] CRUD de productos/categorías (admin), variantes talla/color, stock
+- [x] Carga de imágenes a Cloudinary (upload firmado directo desde el navegador)
+- [x] PLP con filtros (categoría, talla, precio, búsqueda) y paginación — ISR
+- [x] PDP con galería, selector de variantes — ISR + JSON-LD Product
+- [x] Home con hero, categorías y novedades; panel /admin con guard de rol
 
 ### Fase 3 — Carrito y checkout de contado (1 semana)
 - [ ] Carrito persistente (Zustand + sync a API), carrito de invitado con merge al iniciar sesión

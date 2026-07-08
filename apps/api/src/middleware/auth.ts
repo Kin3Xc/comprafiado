@@ -33,6 +33,19 @@ export const requireAuth: RequestHandler = (req, _res, next) => {
   next();
 };
 
+/** Adjunta req.auth si hay token válido; nunca rechaza. */
+export const optionalAuth: RequestHandler = (req, _res, next) => {
+  const token = extractToken(req);
+  if (token) {
+    try {
+      req.auth = verifyAccessToken(token);
+    } catch {
+      // token inválido → visitante anónimo
+    }
+  }
+  next();
+};
+
 export function requireRole(rol: string): RequestHandler {
   return (req, _res, next) => {
     if (!req.auth) throw new HttpError(401, 'No autenticado');
