@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { CartBadge } from './cart-badge';
 
 export function Header() {
   return (
@@ -14,6 +15,7 @@ export function Header() {
           <Link href="/cuenta" className="hover:text-emerald-700">
             Mi cuenta
           </Link>
+          <CartBadge />
         </nav>
       </div>
     </header>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -77,12 +78,20 @@ export default function CuentaPage() {
           <h1 className="text-2xl font-bold text-gray-900">Mi cuenta</h1>
           <p className="text-sm text-gray-600">{user.email}</p>
         </div>
-        <button
-          onClick={logout}
-          className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-50"
-        >
-          Cerrar sesión
-        </button>
+        <div className="flex items-center gap-3">
+          <Link
+            href="/cuenta/pedidos"
+            className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700"
+          >
+            Mis pedidos
+          </Link>
+          <button
+            onClick={logout}
+            className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-50"
+          >
+            Cerrar sesión
+          </button>
+        </div>
       </div>
 
       <section className="rounded-2xl bg-white p-6 shadow-sm">

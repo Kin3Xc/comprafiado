@@ -1,11 +1,18 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import type { Producto } from '@/lib/catalog';
+import { useCart } from '@/lib/cart-store';
+import { ApiError } from '@/lib/api';
 
 export function VariantSelector({ producto }: { producto: Producto }) {
   const tallas = [...new Set(producto.variantes.map((v) => v.talla))];
   const [talla, setTalla] = useState<string | null>(null);
+  const add = useCart((s) => s.add);
+  const [agregando, setAgregando] = useState(false);
+  const [agregado, setAgregado] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const coloresDisponibles = talla
     ? producto.variantes.filter((v) => v.talla === talla && v.stock > 0)
@@ -73,14 +80,41 @@ export function VariantSelector({ producto }: { producto: Producto }) {
         </p>
       )}
 
-      {/* El botón agrega al carrito en la Fase 3 */}
       <button
         type="button"
-        disabled={!variante}
+        disabled={!variante || agregando}
+        onClick={async () => {
+          if (!variante) return;
+          setError(null);
+          setAgregando(true);
+          try {
+            await add({
+              productoId: producto.id,
+              talla: variante.talla,
+              color: variante.color,
+              cantidad: 1,
+            });
+            setAgregado(true);
+          } catch (err) {
+            setError(err instanceof ApiError ? err.message : 'No se pudo agregar');
+          } finally {
+            setAgregando(false);
+          }
+        }}
         className="w-full rounded-lg bg-emerald-600 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto sm:px-10"
       >
-        {variante ? 'Agregar al carrito' : 'Selecciona talla y color'}
+        {agregando ? 'Agregando…' : variante ? 'Agregar al carrito' : 'Selecciona talla y color'}
       </button>
+
+      {error && <p className="text-sm text-red-600">{error}</p>}
+      {agregado && (
+        <p className="text-sm text-emerald-700">
+          Agregado ✓{' '}
+          <Link href="/carrito" className="font-semibold underline">
+            Ver carrito
+          </Link>
+        </p>
+      )}
     </div>
   );
 }

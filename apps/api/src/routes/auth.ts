@@ -17,6 +17,7 @@ import { validate } from '../middleware/validate.js';
 import { requireAuth } from '../middleware/auth.js';
 import { HttpError } from '../middleware/error-handler.js';
 import { setAuthCookies, clearAuthCookies, verifyRefreshToken } from '../lib/tokens.js';
+import { mergeGuestCart } from '../lib/cart.js';
 import { sendMail } from '../lib/mailer.js';
 import { env } from '../config/env.js';
 
@@ -43,6 +44,7 @@ authRouter.post('/register', authLimiter, validate(registerSchema), async (req, 
   const passwordHash = await bcrypt.hash(password, BCRYPT_ROUNDS);
   const user = await User.create({ nombre, apellidos, email, passwordHash });
 
+  await mergeGuestCart(String(user._id), req, res);
   setAuthCookies(res, { id: String(user._id), rol: user.rol!, tokenVersion: user.tokenVersion! });
   res.status(201).json({ user: toPublicUser(user) });
 });
@@ -55,6 +57,7 @@ authRouter.post('/login', authLimiter, validate(loginSchema), async (req, res) =
     throw new HttpError(401, 'Correo o contraseña incorrectos');
   }
 
+  await mergeGuestCart(String(user._id), req, res);
   setAuthCookies(res, { id: String(user._id), rol: user.rol!, tokenVersion: user.tokenVersion! });
   res.json({ user: toPublicUser(user) });
 });

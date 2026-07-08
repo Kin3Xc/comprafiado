@@ -135,11 +135,12 @@ Igual que B, pero el cliente define un abono inicial; al aprobarse el crédito p
 - [x] PDP con galería, selector de variantes — ISR + JSON-LD Product
 - [x] Home con hero, categorías y novedades; panel /admin con guard de rol
 
-### Fase 3 — Carrito y checkout de contado (1 semana)
-- [ ] Carrito persistente (Zustand + sync a API), carrito de invitado con merge al iniciar sesión
-- [ ] Checkout: datos de envío, resumen
-- [ ] Integración ePayco: checkout, webhook, página de respuesta, idempotencia
-- [ ] Emails transaccionales de orden (Resend)
+### Fase 3 — Carrito y checkout de contado (1 semana) ✅
+- [x] Carrito persistente (Zustand + sync a API), carrito de invitado con merge al iniciar sesión
+- [x] Checkout: datos de envío prellenados del perfil, resumen
+- [x] Integración ePayco: checkout onpage, webhook con firma/idempotencia/validación de monto, página de respuesta
+- [x] Emails transaccionales de orden (Resend), página /cuenta/pedidos
+- Docs: `docs/fase-3-pagos.md` (flujo técnico) y `docs/PENDIENTES.md` (checklist de configuración)
 
 ### Fase 4 — Módulo de crédito (1.5-2 semanas) ← núcleo del negocio
 - [ ] Formulario de solicitud (React Hook Form + Zod): datos, ocupación, tiempo en cargo, municipio, mayoría de edad
