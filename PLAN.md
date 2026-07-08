@@ -116,16 +116,17 @@ Igual que B, pero el cliente define un abono inicial; al aprobarse el crédito p
 
 ## 4. Fases de Trabajo
 
-### Fase 0 — Setup (2-3 días)
-- [ ] Monorepo pnpm, TypeScript, ESLint/Prettier, git
-- [ ] Next.js + Tailwind configurados; Express + estructura de carpetas
-- [ ] MongoDB Atlas (cluster, usuario, IP allowlist), variables de entorno
-- [ ] CI básico (lint + typecheck + build)
+### Fase 0 — Setup (2-3 días) ✅
+- [x] Monorepo pnpm, TypeScript, ESLint/Prettier, git
+- [x] Next.js + Tailwind configurados; Express + estructura de carpetas
+- [x] MongoDB Atlas (cluster, usuario, IP allowlist), variables de entorno
+- [x] CI básico (lint + typecheck + build)
 
-### Fase 1 — Auth y usuarios (3-4 días)
-- [ ] Registro/login (JWT httpOnly + refresh), recuperación de contraseña
-- [ ] Perfil de usuario, middleware de roles (customer/admin)
-- [ ] Carrito de invitado (sessionId) con merge al iniciar sesión
+### Fase 1 — Auth y usuarios (3-4 días) ✅
+- [x] Registro/login (JWT httpOnly + refresh con rotación), recuperación de contraseña
+- [x] Perfil de usuario, middleware de roles (customer/admin), script create-admin
+- [x] Páginas web: /login, /registro, /recuperar, /restablecer, /cuenta
+- Carrito de invitado movido a Fase 3 (requiere modelo de productos)
 
 ### Fase 2 — Catálogo (1 semana)
 - [ ] CRUD de productos/categorías (admin), variantes talla/color, stock
@@ -134,7 +135,7 @@ Igual que B, pero el cliente define un abono inicial; al aprobarse el crédito p
 - [ ] PDP con galería, selector de variantes — ISR + JSON-LD Product
 
 ### Fase 3 — Carrito y checkout de contado (1 semana)
-- [ ] Carrito persistente (Zustand + sync a API)
+- [ ] Carrito persistente (Zustand + sync a API), carrito de invitado con merge al iniciar sesión
 - [ ] Checkout: datos de envío, resumen
 - [ ] Integración ePayco: checkout, webhook, página de respuesta, idempotencia
 - [ ] Emails transaccionales de orden (Resend)
